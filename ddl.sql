@@ -188,7 +188,8 @@ CREATE TABLE production_request (
     so_id INTEGER NOT NULL,
     manager_id INTEGER NOT NULL,
     pr_code VARCHAR(50) NOT NULL UNIQUE,
-    status VARCHAR(50) NOT NULL DEFAULT 'PR_RVW',
+    status VARCHAR(50) NOT NULL DEFAULT 'PR_RVW', -- 결재 / 업무 상태    
+    production_status VARCHAR(20) NULL -- 생산 진행 상태 (PR_ITEM 집계 결과)
     requested_at VARCHAR(30) NOT NULL,
     due_at VARCHAR(30) NOT NULL,
     reason VARCHAR(255) NULL,
@@ -206,6 +207,7 @@ CREATE TABLE production_request_item_quantity (
     so_item_id INTEGER NOT NULL,
     manager_id INTEGER NOT NULL,
     quantity INTEGER NOT NULL DEFAULT 0,
+    status VARCHAR(20) NOT NULL DEFAULT 'PIS_WAIT'
     PRIMARY KEY (id),
     CONSTRAINT FK_production_request_TO_production_request_item_quantity FOREIGN KEY (pr_id) REFERENCES production_request (id),
     CONSTRAINT FK_sales_order_item_TO_production_request_item_quantity FOREIGN KEY (so_item_id) REFERENCES sales_order_item (id),
