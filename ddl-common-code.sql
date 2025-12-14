@@ -56,6 +56,7 @@ INSERT INTO common_code_type (code, name, description) VALUES
 ('SO_STATUS','주문 상태','Sales Order Status'),
 ('LINE_STATUS','생산라인 상태','Production Line Status'),
 ('PR_STATUS','생산요청 상태','Production Request Status'),
+('PR_ITEM_STATUS', '생산요청 품목 상태', 'Production Request Item Status');
 ('DEPT_CODE','부서','Department'),
 ('MENU_CODE','메뉴','Menu'),
 ('AUTH_CODE','권한','Authority');
@@ -191,6 +192,12 @@ INSERT INTO common_code VALUES
 (NULL,'LINE_STATUS','PL_ACTIVE','사용',NULL,1,'Production Line Status – Active',1),
 (NULL,'LINE_STATUS','PL_INACTIVE','미사용',NULL,2,'Production Line Status – Inactive',1),
 (NULL,'LINE_STATUS','PL_DOWN','고장',NULL,3,'Production Line Status – Down',1);
+
+INSERT INTO common_code (type_code, code, name, sort_order, description) VALUES
+('PR_ITEM_STATUS','PIS_WAIT','대기',1,'결재 승인 후 생산 대기'),
+('PR_ITEM_STATUS','PIS_PLANNED','계획수립',2,'생산계획 수립 완료'),
+('PR_ITEM_STATUS','PIS_PRODUCING','생산중',3,'작업지시 진행 중'),
+('PR_ITEM_STATUS','PIS_DONE','생산완료',4,'해당 품목 생산 완료');
 
 -- =====================================================
 -- 11. 부서
