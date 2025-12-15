@@ -368,10 +368,8 @@ CREATE TABLE approval (
     total_line INTEGER NOT NULL DEFAULT 0,
     ref_code VARCHAR(50) NOT NULL,
     drafted_at VARCHAR(30) NOT NULL,
-    document_prefix_id INTEGER NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT FK_employee_TO_approval FOREIGN KEY (drafter_id) REFERENCES employee (id),
-    CONSTRAINT FK_document_prefix_TO_approval FOREIGN KEY (document_prefix_id) REFERENCES document_prefix(id)
+    CONSTRAINT FK_employee_TO_approval FOREIGN KEY (drafter_id) REFERENCES employee (id)
 );
 
 CREATE TABLE approval_attachment (
