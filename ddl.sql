@@ -388,6 +388,14 @@ CREATE TABLE document_prefix (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE document_sequence (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    prefix VARCHAR(20) NOT NULL,      -- 문서구분 접두사 (SO, PR, PP...)
+    base_date CHAR(8) NOT NULL,       -- 기준일자 (yyyyMMdd
+    current_seq INT NOT NULL DEFAULT 0,  -- 현재 시퀀스
+    UNIQUE KEY uk_prefix_date (prefix, base_date)
+);
+
 CREATE TABLE permission (
     id INTEGER NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
