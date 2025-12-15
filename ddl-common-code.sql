@@ -59,7 +59,8 @@ INSERT INTO common_code_type (code, name, description) VALUES
 ('PR_ITEM_STATUS', '생산요청 품목 상태', 'Production Request Item Status');
 ('DEPT_CODE','부서','Department'),
 ('MENU_CODE','메뉴','Menu'),
-('AUTH_CODE','권한','Authority');
+('AUTH_CODE','권한','Authority'),
+('DOC_TYPE', '문서 구분', 'Document Type');
 
 -- =====================================================
 -- 4. 직책 / 직급 / 재직 상태
@@ -287,5 +288,18 @@ INSERT INTO common_code VALUES
 (NULL,'AUTH_CODE','AC_PRO','생산',NULL,3,'Authority – Production',1),
 (NULL,'AUTH_CODE','AC_WHS','물류',NULL,4,'Authority – Warehouse / Logistics',1),
 (NULL,'AUTH_CODE','AC_CLI','고객',NULL,5,'Authority – Client',1);
+
+-- =====================================================
+-- 14. 문서 구분
+-- =====================================================
+
+INSERT INTO common_code VALUES
+(NULL, 'DOC_TYPE', 'DOC_SO', 'SO', NULL, 1, '주문서', 1),
+(NULL, 'DOC_TYPE', 'DOC_PR', 'PR', NULL, 2, '생산요청서', 1),
+(NULL, 'DOC_TYPE', 'DOC_PP', 'PP', NULL, 3, '생산계획', 1),
+(NULL, 'DOC_TYPE', 'DOC_WO', 'WO', NULL, 4, '작업지시서', 1),
+(NULL, 'DOC_TYPE', 'DOC_GI', 'GI', NULL, 5, '출고지시서', 1),
+(NULL, 'DOC_TYPE', 'DOC_DO', 'DO', NULL, 6, '납품서', 1),
+(NULL, 'DOC_TYPE', 'DOC_SERO', 'SERO', NULL, 7, '전자결재', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
