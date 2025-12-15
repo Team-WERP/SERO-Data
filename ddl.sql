@@ -54,9 +54,11 @@ DROP TABLE IF EXISTS menu_permission;
 
 CREATE TABLE department (
     id INTEGER NOT NULL AUTO_INCREMENT,
+    parent_dept_id INTEGER NULL,
     dept_code VARCHAR(20) NOT NULL,
     dept_name VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    CONSTRAINT FK_department_TO_department FOREIGN KEY (parent_dept_id) REFERENCES department (id)
 );
 
 CREATE TABLE employee (
@@ -186,8 +188,7 @@ CREATE TABLE sales_order_item (
 CREATE TABLE production_request (
     id INTEGER NOT NULL AUTO_INCREMENT,
     so_id INTEGER NOT NULL,
-    drafter_id INTEGER NOT NULL,
-    manager_id INTEGER NULL,
+    manager_id INTEGER NOT NULL,
     pr_code VARCHAR(50) NOT NULL UNIQUE,
     status VARCHAR(50) NOT NULL DEFAULT 'PR_RVW', -- 결재 / 업무 상태    
     production_status VARCHAR(20) NULL -- 생산 진행 상태 (PR_ITEM 집계 결과)
@@ -199,7 +200,6 @@ CREATE TABLE production_request (
     approval_code VARCHAR(50) NULL UNIQUE,
     PRIMARY KEY (id),
     CONSTRAINT FK_sales_order_TO_production_request FOREIGN KEY (so_id) REFERENCES sales_order (id),
-    CONSTRAINT FK_employee_TO_production_request FOREIGN KEY (drafter_id) REFERENCES employee (id),
     CONSTRAINT FK_employee_TO_production_request FOREIGN KEY (manager_id) REFERENCES employee (id)
 );
 
